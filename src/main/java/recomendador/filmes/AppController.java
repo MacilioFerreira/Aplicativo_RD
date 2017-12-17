@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class HelloController {
+public class AppController {
 
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
 
-    public HelloController(Facebook facebook, ConnectionRepository connectionRepository) {
+    public AppController(Facebook facebook, ConnectionRepository connectionRepository) {
         this.facebook = facebook;
         this.connectionRepository = connectionRepository;
     }
