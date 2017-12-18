@@ -1,35 +1,38 @@
 <html>
 <head>
-	<title>Hello Facebook</title>
+	<title>Recomendador de Filmes</title>
 </head>
 	<body>
-	<script>
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '874392799389664',
-	      xfbml      : true,
-	      version    : 'v2.11'
-	    });
-	    FB.AppEvents.logPageView();
-	  };
-	
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "https://connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-	</script>
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '651621155008593',
+		      xfbml      : true,
+		      version    : 'v2.11'
+		    });
+		    FB.AppEvents.logPageView();
+		  };
+		
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "https://connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
 
-		<h3>Connect to Facebook</h3>
+		<h3>Recomendador de Filmes</h3>
+		
+		<div class="formInfo">
+			<p> Este aplicativo recomenda filmes baseado na sua lista de amigos. Assim que tal ver qual filme você ainda não assistiu e
+				ficar por dentro das conversas em grupo? Para utilizar o aplicativo basta entrar no Facebook e clicar em recomendar. 
+			</p>
+		</div>
 
 		<form action="/connect/facebook" method="POST">
 			<input type="hidden" name="scope" value="user_posts" />
-			<div class="formInfo">
-				<p>You aren't connected to Facebook yet. Click the button to connect this application with your Facebook account.</p>
-			</div>
-			<p><button type="submit">Connect to Facebook</button></p>
+			<p><button type="submit">Conectar-se ao Facebook</button></p>
 		</form>
 	</body>
 </html>

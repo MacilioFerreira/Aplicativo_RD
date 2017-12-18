@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>Recomendador de Filme</title>
+	<meta property="fb:app_id" content="651621155008593" />
+	<meta property="og:url" content="https://recmus.herokuapp.com/compartilhar/teste" />
+	<meta property="og:title" content="Filme recomendado: teste" />
+	<meta property="og:description" content="O site https://recmus.herokuapp.com me recomendou a seguine página de Filmes: " />
+	<meta property="og:image" content="https://i.imgur.com/VumUITz.jpg" />
+	<meta property="og:type" content="website" />
+</head>
+	<body>		
+		<p> Página do Filme recomendada: <span th:text="${movie.title}"> </span> </p>
+		<p> <a href="https://recmus.herokuapp.com/"> Clique aqui para uma nova recomendação !</a> </p>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  >
+<head>
+	<link href="/webjars/materializecss/0.97.7/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Hello Facebook</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+</head>
+	<body>
+	
+		<h4><b>Meus Filmes</b>:</h4>
+
+		
+		<div class="container">
+			<div class="panel-wrapper collapse in">
+			
+				<table class="table table-hover" border="1">
+					<thead>
+						<tr>
+							<th>Titulo</th>
+							<th>Categoria</th>
+							<th>Produtora</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr th:each="movie:${movies}">
+							<td th:text="${movie.title}"></td>
+							<td th:text="${movie.category}"></td>
+							<td th:if="${movie.producer != null}"> <span th:text="${movie.producer}"></span> </td>
+							<td th:unless="${movie.producer != null}"> <span th:text="${movie.producer}"></span> </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>			
+		</div>
+		
+		<div th:if="${movie != null}">
+			<h4> O Filme recomendado para você é <span th:text="${movie.title}"></span> </h4>
+			<form action="/compartilharFilme" method="POST">
+				<input type="hidden" name="title" value="${movie}" />
+				<p><button type="submit">Postar no Facebook</button></p>
+			</form>
+		</div>
+		
+		<div th:if="${movie == null}"> 
+			<form action="/buscarFilme" method="GET">
+				<input type="hidden" name="title" value="${movie.title}" />
+				<p><button type="submit">Buscar Recomendação</button></p>
+			</form>		
+		</div>
+		
+		<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+		<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+	</body>
+</html>
