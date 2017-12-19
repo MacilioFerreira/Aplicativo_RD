@@ -1,4 +1,4 @@
-package recomendador.filmes;
+package adviser.movies;
 
 import java.util.UUID;
 import org.springframework.context.annotation.Configuration;

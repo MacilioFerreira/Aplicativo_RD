@@ -3,13 +3,13 @@
 	<title>Recomendador de Filme</title>
 	<meta property="fb:app_id" content="651621155008593" />
 	<meta property="og:url" th:attr="content=${'https://recomendadorfilme.herokuapp.com/shareMovie/'+movie}" />
-	<meta property="og:title" th:attr="content=${'Filme recomendado:' +movie}" />
-	<meta property="og:description" th:attr="content=${'O site https://recomendadorfilme.herokuapp.com me recomendou a página de Filmes:' +movie}"/>
+	<meta property="og:title" th:attr="content=${'Página de Filme recomendada:' +movie}" />
+	<meta property="og:description" th:attr="content=${'O site https://recomendadorfilme.herokuapp.com recomendou a página de filmes:' +movie}"/>
 	<meta property="og:image" content="http://www.psdgraphics.com/wp-content/uploads/2009/11/clapboard.jpg" />
 	<meta property="og:type" content="website" />
 </head>
 	<body>		
-		<p> Página do Filme recomendada: <span th:text="${movie}"> </span> </p>
-		<p> <a href=""> Clique aqui para uma nova recomendação !</a> </p>
+		<p> Página de Filme recomendada: <span th:text="${movie}"> </span> </p>
+		<p>Nova recomendação? <a href="https://recomendadorfilme.herokuapp.com">Clique aqui</a> </p>
 	</body>
 </html>

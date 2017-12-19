@@ -1,4 +1,4 @@
-package recomendador.filmes;
+package adviser.movies;
 
 
 import java.util.ArrayList;
@@ -15,7 +15,6 @@ import org.springframework.social.facebook.api.Page;
 import org.springframework.social.facebook.api.PagedList;
 import org.springframework.social.facebook.api.PostData;
 import org.springframework.social.facebook.api.Reference;
-import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +25,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
-public class AppController {
+public class AdviserController {
 
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
 
-    public AppController(Facebook facebook, ConnectionRepository connectionRepository) {
-        this.facebook = new FacebookTemplate("EAACEdEose0cBAFa581RQZCPqcEBrT1ZCQ4V3bINNR58b8IBe4nBlRZBBqI6Vou6HV0rQLXxViigyZCoB3xL3uGHxBwaAnNXlINFfJKZBo3ssohBI0zzcsGYQBA0ZBy5VZAubqVq5BGlJ0hOZCuy97wjpniNdvcS7FaGj4ZBULDBrZByG7SUgqT6p8xtqEtyHDIefLaWJm1MU8VoQZDZD");
+    public AdviserController(Facebook facebook, ConnectionRepository connectionRepository) {
+        this.facebook = facebook;
         this.connectionRepository = connectionRepository;
     }
 
@@ -41,12 +40,6 @@ public class AppController {
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
             return "redirect:/connect/facebook";
         }
-        
-//        String [] fields = { "id", "email",  "first_name", "last_name" };
-//        User userProfile = facebook.fetchObject("me", User.class, fields);
-//        
-//        model.addAttribute("facebookProfile", userProfile);
-//        model.addAttribute("feed", fields);
         return "redirect:/listMovies";
     }
     
@@ -64,7 +57,7 @@ public class AppController {
     	
     }
     
-    @GetMapping(path="/buscarFilme")
+    @GetMapping(path="/search")
     public String recomendarFilme(Model model) {
     	
 		PagedList<Reference> amigos = facebook.friendOperations().getFriends();

@@ -1,4 +1,4 @@
-package recomendador.filmes;
+package adviser.movies;
 
 public class Movie {
 	
