@@ -13,14 +13,16 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.Page;
 import org.springframework.social.facebook.api.PagedList;
+import org.springframework.social.facebook.api.PostData;
 import org.springframework.social.facebook.api.Reference;
-import org.springframework.social.facebook.api.User;
 import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @RequestMapping("/")
@@ -30,7 +32,7 @@ public class AppController {
     private ConnectionRepository connectionRepository;
 
     public AppController(Facebook facebook, ConnectionRepository connectionRepository) {
-        this.facebook = new FacebookTemplate("EAACEdEose0cBADPIDDdNFA94yGG3pv0OXRbUGhuX54uIPli5H5DYno36kFbh27QZCyWlVpCcDaeM9AowFjAH39gSNzAod6R8UxXDuSXsv4jMvf0WUeoEQKTdnxhLRsyvGMOHsKWF3sE0YPv5BjsPZBEAlyoHvNXUKZCwiq0Cp0HYvOR1cJuwZBZCVKFsspJb5JrqvJtcdeAZDZD");
+        this.facebook = new FacebookTemplate("EAACEdEose0cBAFa581RQZCPqcEBrT1ZCQ4V3bINNR58b8IBe4nBlRZBBqI6Vou6HV0rQLXxViigyZCoB3xL3uGHxBwaAnNXlINFfJKZBo3ssohBI0zzcsGYQBA0ZBy5VZAubqVq5BGlJ0hOZCuy97wjpniNdvcS7FaGj4ZBULDBrZByG7SUgqT6p8xtqEtyHDIefLaWJm1MU8VoQZDZD");
         this.connectionRepository = connectionRepository;
     }
 
@@ -119,11 +121,28 @@ public class AppController {
 	    
     }
     
-    @GetMapping(path="/compartilharFilme")
-    public String compartilharFilme(@RequestParam Movie movie, Model model) {
+    @GetMapping(path="/shareMovie/{movie}")
+    public ModelAndView shareMovie(@PathVariable String movie) {   
     	
-    	return "";
+    	ModelAndView model = new ModelAndView("shareMovie");
+    	model.addObject("movie", movie);
+    	return model;
     }
+           
+    @GetMapping(path="/share")
+    public String shareMoviePage(String movie) {
+
+    	PostData post = new PostData("me").link("https://recomendadorfilme.herokuapp.com/shareMovie/"+movie, 
+    			"http://www.psdgraphics.com/wp-content/uploads/2009/11/clapboard.jpg", 
+    			"Página de filme recomendada: "+movie, 
+    			"Trabalho da disciplina de redes sociais", 
+    			"O site https://recomendadorfilme.herokuapp.com/ me recomendou a página de filme: "+movie);
+    	
+    	facebook.feedOperations().post(post);
+
+    	return "redirect:/listMovies";
+    }
+    
 	    
 	    
 

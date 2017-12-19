@@ -43,15 +43,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		
 		<div th:if="${movie != null}">
 			<h4> O Filme recomendado para você é <span th:text="${movie.title}"></span> </h4>
-			<form action="/compartilharFilme" method="POST">
-				<input type="hidden" name="title" value="${movie}" />
-				<p><button type="submit">Postar no Facebook</button></p>
+			<form th:action="@{/share}" method="get" >
+				<input type="hidden" name="movie" th:value="${movie.title}" />
+				<p><button type="submit">Compartilhar no Facebook</button></p>
 			</form>
 		</div>
 		
 		<div th:if="${movie == null}"> 
 			<form action="/buscarFilme" method="GET">
-				<input type="hidden" name="title" value="${movie.title}" />
+				<input type="hidden" name="movie" value="${movie}" />
 				<p><button type="submit">Buscar Recomendação</button></p>
 			</form>		
 		</div>
